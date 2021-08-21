@@ -10,9 +10,22 @@ namespace SF_18._4_YoutubeDownloader
             return Console.ReadLine();
         }
 
+        static string InputFileType()
+        {
+            Console.WriteLine("Выбрать формат загрузки: 1 - mp4, 2 - mp3");
+            int selection = int.Parse(Console.ReadLine());
+
+            switch (selection)
+            {
+                case 1: return ".mp4";
+                case 2: return ".mp3";
+                default: return ".mp4";
+            }
+        }
+
         static void Main(string[] args)
         {
-            Downloader downloader = new Downloader(InputUrl());
+            Downloader downloader = new Downloader(InputUrl(), InputFileType());
             Command explodeCommand = new ExplodeCommand(downloader);
             Command downloadCommand = new DownloadCommand(downloader);
 

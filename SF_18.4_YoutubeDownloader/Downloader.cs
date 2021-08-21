@@ -11,15 +11,18 @@ namespace SF_18._4_YoutubeDownloader
     {
         private string videoUrl;
 
+        private string fileType;
+
         private string outputFilePath;
 
         private YoutubeClient youtube;
 
         private string videoTitle;
 
-        public Downloader(string videoUrl)
+        public Downloader(string videoUrl, string fileType)
         {
             this.videoUrl = videoUrl;
+            this.fileType = fileType;
             outputFilePath = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\DownloadedVideo\\";
             youtube = new YoutubeClient();
         }
@@ -39,9 +42,9 @@ namespace SF_18._4_YoutubeDownloader
 
             OutputPathCheck();
 
-            await youtube.Videos.DownloadAsync(videoUrl, outputFilePath + videoTitle + ".mp4");
+            await youtube.Videos.DownloadAsync(videoUrl, outputFilePath + videoTitle + fileType);
 
-            Console.WriteLine("Загружено");
+            Console.WriteLine("Загружено (рабочий стол -> DownloadeVideo)");
         }
 
         void OutputPathCheck()
