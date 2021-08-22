@@ -4,20 +4,21 @@ using System.Text;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
 using System.IO;
+using System.Threading.Tasks;
+
 
 namespace SF_18._4_YoutubeDownloader
 {
     public class Downloader
     {
-        private string videoUrl;
+        private string videoUrl { get; set; }
 
-        private string fileType;
+        private string fileType { get; set; }
 
-        private string outputFilePath;
+        private string outputFilePath { get; set; }
 
-        private YoutubeClient youtube;
+       private YoutubeClient youtube;
 
-        private string videoTitle;
 
         public Downloader(string videoUrl, string fileType)
         {
@@ -31,20 +32,21 @@ namespace SF_18._4_YoutubeDownloader
         {
             var ytb = await youtube.Videos.GetAsync(videoUrl);
 
-            videoTitle = ytb.Title;
+            var videoTitle = ytb.Title;
             var videoAuthor = ytb.Author.Title;
 
-            Console.WriteLine("Название:\t{0}\nАвтор:\t{1}", videoTitle, videoAuthor);
+            Console.Clear();
+            Console.WriteLine("Название:\t{0}\nАвтор:\t{1}\nФормат:\t{2}", videoTitle, videoAuthor, this.fileType);
         }
+
 
         public async void Download()
         {
-
             OutputPathCheck();
 
-            await youtube.Videos.DownloadAsync(videoUrl, outputFilePath + videoTitle + fileType);
+            await youtube.Videos.DownloadAsync(videoUrl, string.Format("{0},{1},{2}", outputFilePath, "downloaded", fileType));
 
-            Console.WriteLine("Загружено (рабочий стол -> DownloadeVideo)");
+            Console.WriteLine("Загружено (рабочий стол -> DownloadedVideo)");
         }
 
         void OutputPathCheck()
