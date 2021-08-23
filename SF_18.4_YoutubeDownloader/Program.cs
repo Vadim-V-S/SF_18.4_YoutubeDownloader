@@ -12,7 +12,7 @@ namespace SF_18._4_YoutubeDownloader
 
         static string InputFileType()
         {
-            Console.WriteLine("Выбрать формат загрузки: 1 - mp4, 2 - mp3");
+            Console.WriteLine("Выбрать формат загрузки: \n1 - mp4, \n2 - mp3");
             int selection = int.Parse(Console.ReadLine());
 
             switch (selection)
