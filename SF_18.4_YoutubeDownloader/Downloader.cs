@@ -44,7 +44,7 @@ namespace SF_18._4_YoutubeDownloader
         {
             OutputPathCheck();
 
-            await youtube.Videos.DownloadAsync(videoUrl, string.Format("{0}downloaded{2}", outputFilePath, fileType));
+            await youtube.Videos.DownloadAsync(videoUrl, string.Format("{0}downloaded{1}", outputFilePath, fileType));
 
             Console.WriteLine("Загружено (рабочий стол -> DownloadedVideo)");
         }
